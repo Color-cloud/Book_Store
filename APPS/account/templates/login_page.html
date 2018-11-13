@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script src="../static/js/bootstrap.js"></script>
+    <script src="../static/js/npm.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-image: url('../static/img/123.jpg');
+        }
+
+        body {
+            background-size: cover
+        }
+    </style>
+{% endblock %}
+{% block banner %}
+    {% if msg %}
+        <span style="color: red;margin-left: 750px">{{ msg }}</span>
+    {% endif %}
+    {% if message %}
+        <span style="color: greenyellow;margin-left: 800px">{{ message }}</span>
+    {% endif %}
+    <form method="post" action="#">
+        <div class="input-group input-group-lg" style="margin-top: 300px;margin-left: 500px">
+            <span class="input-group-addon" id="sizing-addon1">用户名:</span>
+            <input type="text" name="srusername" class="form-control" placeholder="Username"
+                   aria-describedby="sizing-addon1" style="width: 600px">
+        </div>
+        <div class="input-group input-group-lg" style="margin-top: 30px;margin-left: 500px">
+            <span class="input-group-addon" id="sizing-addon1">&nbsp;&nbsp;&nbsp;&nbsp;密码:</span>
+            <input type="password" name="srpassword" class="form-control" placeholder="Password"
+                   aria-describedby="sizing-addon1" style="width: 600px">
+        </div>
+        <input type="submit" class="btn btn-default" value="登录"
+               style="margin-top: 60px;margin-left: 500px;width: 700px;background-color: lightskyblue">
+
+    </form>
+
+{% endblock %}

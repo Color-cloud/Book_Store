@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>购物车</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/carts.css">
+</head>
+<body>
+{% load chengfa %}
+<section class="cartMain">
+    <div class="cartMain_hd">
+        <ul class="order_lists cartTop">
+            <li class="list_chk">
+                <input type="checkbox" id="all" class="whole_check">
+                <label for="all"></label>
+                全选
+            </li>
+            <li class="list_con">商品信息</li>
+            <li class="list_info">商品参数</li>
+            <li class="list_price">单价</li>
+            <li class="list_amount">数量</li>
+            <li class="list_sum">金额</li>
+            <li class="list_op">操作</li>
+        </ul>
+    </div>
+    <div class="cartBox">
+        {% for shopcar in shopcars %}
+
+            <div class="order_content">
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="1{{ shopcar.book_id_id }}" class="son_check">
+                        <label for="1{{ shopcar.book_id_id }}"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img" id="{{ shopcar.book_id_id }}"><a href="javascript:;"><img
+                                style="height: 90px"
+                                src="{{ shopcar.img_url }}" alt=""></a>
+                        </div>
+                        <div class="list_text"><a href="javascript:;">{{ shopcar.book_name }}</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥{{ shopcar.price }}</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" onclick="dianji(this.id)" id="{{ shopcar.book_id_id }}"
+                               class="reduce reSty jian">-</a>
+                            <input style="height: 21px" type="text" value=" {{ shopcar.count }}" class="sum">
+                            <a href="javascript:;" class="plus jia" onclick="dianji(this.id)"
+                               id="{{ shopcar.book_id_id }}">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥{{ shopcar.count|chengfa:shopcar.price }}</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" onclick="dianji(this.id)" id="{{ shopcar.book_id_id }}"
+                                          class="delete_car">移除商品</a></p>
+                    </li>
+                </ul>
+            </div>
+
+        {% endfor %}
+    </div>
+    <!--底部-->
+    <div class="bar-wrapper">
+        <div class="bar-right">
+            <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
+            <div class="totalMoney">共计: <strong class="total_text" id="zong_e">0.00</strong></div>
+            <div class="calBtn jiesuan"><a href="#">结算</a></div>
+        </div>
+    </div>
+
+</section>
+<section class="model_bg"></section>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="/static/js/carts.js"></script>
+<script>
+    let book_id;
+
+    function dianji(id) {
+        book_id = id;
+    }
+
+    $(function () {
+        {# 删除div之类的元素标签  尽量不要使用自身删除自身  可以使用通过this找到自身  然后找到父类标签删除子元素的方式删除  #}
+        $('.delete_car').click(function () {
+            let $bt = $(this);
+            let data = {'book_id': $('#' + book_id).attr('id')};
+            let delete_url = '{% url 'delete_shopcar' %}';
+            $.post(delete_url, data, function (result) {
+                if (result.status === 200) {
+                    $bt.parents('ul').remove();
+                }
+            })
+        });
+        $('.jian').click(function () {
+            let data = {'book_id': $('#' + book_id).attr('id')};
+            let jian_url = '{% url 'jian' %}';
+            $.post(jian_url, data, function () {
+            })
+        });
+        $('.jia').click(function () {
+            let data = {'book_id': $("#" + book_id).attr('id')};
+            let jia_url = '{% url 'jia' %}';
+            $.post(jia_url, data, function () {
+            })
+        });
+        $(".jiesuan").click(function () {
+            {#  获取多个重复class名称(类名)的标签内容  使用each(function) #}
+            var book_ids = '';
+            $(".mark").each(function () {
+                book_ids = book_ids + $(this).attr('for') + ',';
+            });
+            let data = {'1book_ids': book_ids,"zong_e": $('#zong_e').text()};
+            let jiesuan_url = '{% url 'dingdan' %}';
+            $.post(jiesuan_url, data, function (result) {
+                let rdata = result.shop_list;
+                let money_total = result.money_total;
+                if (result.status === 200) {
+                    window.location.href = "{% url 'dingdan' %}" + "/?rdata=" + rdata +"&zong_e=" + money_total
+
+                }
+            })
+        })
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<div style="background-color: lightgray;height: 50px">
+    <div class="btn-group" role="group" aria-label="..." style="margin-left: 280px;position: relative;top: 10px;left: -80px">
+        {% for nav in navs %}
+            <a href="http://127.0.0.1:8000/?classfy_id={{ nav.classify_id}}"><button type="button" class="btn btn-default" style="background-color: #5bc0de;margin-left: 12px"><span class="label label-info" style="font-size: 16px">{{ nav.classify_name }}</span></button></a>
+        {% endfor %}
+    </div>
+</div>

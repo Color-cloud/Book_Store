@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<link rel="stylesheet" href="../static/css/shutter.css">
+
+</head>
+<body>
+
+<div class="shutter">
+<div class="shutter-img">
+  <a href="#" data-shutter-title="Iron Man"><img src="../static/img/4.jpg" alt="#"></a>
+  <a href="#" data-shutter-title="Iron Man"><img src="../static/img/123.jpg" alt="#"></a>
+  <a href="#" data-shutter-title="Iron Man"><img src="../static/img/zhuce.jpg" alt="#"></a>
+  <a href="#" data-shutter-title="Super Man"><img src="../static/images/shutter_2.jpg" alt="#"></a>
+  <a href="#" data-shutter-title="The Hulk"><img src="../static/images/shutter_3.jpg" alt="#"></a>
+   <a href="#" data-shutter-title="The your"><img src="../static/img/456.jpg" alt="#"></a>
+</div>
+<ul class="shutter-btn">
+  <li class="prev"></li>
+  <li class="next"></li>
+</ul>
+
+</div>
+
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/velocity.js"></script>
+<script src="../static/js/shutter.js"></script>
+<script>
+$(function () {
+  $('.shutter').shutter({
+	shutterW: 1920, // 容器宽度
+	shutterH: 400, // 容器高度
+	isAutoPlay: true, // 是否自动播放
+	playInterval: 3000, // 自动播放时间
+	curDisplay: 3, // 当前显示页
+	fullPage: false // 是否全屏展示
+  });
+});
+</script>
+
+</body>
+</html>

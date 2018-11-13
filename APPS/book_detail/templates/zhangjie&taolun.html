@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<ul id="myTab" class="nav nav-tabs">
+	<li class="active"><a href="#home" data-toggle="tab"><h3>小说章节</h3></a></li>
+	<li><a href="#ios" data-toggle="tab"><h3>讨论区</h3></a></li>
+</ul>
+
+<div id="myTabContent" class="tab-content">
+
+	<div class="tab-pane fade in active" id="home">
+        {% for bookdetail in bookdetails %}
+        <a href="{{ bookdetail.text }}"><div style="margin: 10px" class="form-control"><span style="font-size: 23px;position: relative;top: -5px" >{{ bookdetail.zhangjie }}</span></div>
+        </a>
+        {% endfor %}
+	</div>
+
+	<div class="tab-pane fade" id="ios">
+        <div style="margin: 10px" class="form-control"><span style="font-size: 23px;position: relative;top: -5px" >vu和法国v胡不会v不会保护跟服务员法国与我国</span></div>
+        <div style="margin: 10px" class="form-control"><span style="font-size: 23px;position: relative;top: -5px" >vu和法国v胡不会v不会保护跟服务员法国与我国</span></div>
+        <div style="margin: 10px" class="form-control"><span style="font-size: 23px;position: relative;top: -5px" >vu和法国v胡不会v不会保护跟服务员法国与我国</span></div>
+        <div style="margin: 10px" class="form-control"><span style="font-size: 23px;position: relative;top: -5px" >vu和法国v胡不会v不会保护跟服务员法国与我国</span></div>
+        <div style="margin: 10px" class="form-control"><span style="font-size: 23px;position: relative;top: -5px" >vu和法国v胡不会v不会保护跟服务员法国与我国</span></div>
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+

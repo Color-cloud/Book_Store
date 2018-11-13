@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style rel="stylesheet">
+
+        .spinner {
+            width: 100px;
+        }
+
+        .spinner input {
+            text-align: right;
+        }
+
+        .input-group-btn-vertical {
+            position: relative;
+            white-space: nowrap;
+            width: 1%;
+            vertical-align: middle;
+            display: table-cell;
+        }
+
+        .input-group-btn-vertical > .btn {
+            display: block;
+            float: none;
+            width: 100%;
+            max-width: 100%;
+            padding: 8px;
+            margin-left: -1px;
+            position: relative;
+            border-radius: 0;
+        }
+
+        .input-group-btn-vertical > .btn:first-child {
+            border-top-right-radius: 4px;
+        }
+
+        .input-group-btn-vertical > .btn:last-child {
+            margin-top: -2px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .input-group-btn-vertical i {
+            position: absolute;
+            top: 0;
+            left: 4px;
+        }
+    </style>
+    <style>
+        body {
+            background-image: url('/static/img/zhuce.jpg');
+        }
+    </style>
+    <script type="application/javascript">
+        $(function () {
+            $('.spinner .btn:first-of-type').on('click', function () {
+                $('.spinner input').val(parseInt($('.spinner input').val(), 10) + 1);
+            });
+            $('.spinner .btn:last-of-type').on('click', function () {
+                $('.spinner input').val(parseInt($('.spinner input').val(), 10) - 1);
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#add_car').click(function () {
+                let add_url = 'http://127.0.0.1:8000/shopcar/addcar/';
+                let data = {
+                    book_id: {{ book.first.book_id }},
+                    number: $('#number').val(),
+                };
+                $.post(add_url, data, function (result) {
+                    if (result.status === 405) {
+                        window.location.href = "{% url 'denglu' %}"
+                    }
+                    $('#car_count').text(result.count)
+
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+{% include 'head.html' %}
+<div style="position: relative;top: 25px"> {# 外部总模块 #}
+    <div class="row">
+        <div class="col-sm-6 col-md-11" style="margin-left: 80px;background-color: lightgray">
+            {% for foo in book %}
+                <div style="background-color: aliceblue;width: 1775px;position: relative;left: -16px">
+                    <span class="glyphicon glyphicon-book" style="font-size: 30px"><span
+                            style="font-size: 24px;position: relative;top: -5px;left: 5px">小说详情</span></span>
+                </div>
+                <div class="thumbnail" style=";background-color: lightgray">
+                    <div><h1 style="position: relative;left: 640px">{{ foo.book_name }}</h1></div>
+                    <div><h4 style="position: relative;left: 660px">价格:100元</h4></div>
+                    <img src="{{ foo.img_url }}" alt="..."
+                         style="margin-left: 60px;margin-top: 40px;width: 240px;height: 320px">
+                    <h3 style="position: relative;left: 360px;top: -240px;width: 760px">{{ foo.miaoshu }}</h3>
+                    <h3 style="position: relative;left: 360px;top: -210px">{{ foo.writer }}</h3>
+                    <h3 style="position: relative;left: 510px;top: -257px">著</h3>
+                    <div class="caption" style="position: relative;top: -560px;left: 1440px">
+                        <p><a href="#" class="btn btn-info" role="button" id="add_car">加入购物车</a>
+                            <a href="#" class="btn btn-success" role="button" style="margin-left: 15px">我的订单</a>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+            {% include 'zhangjie&taolun.html' %}
+            <div class="container col-lg-1" style="position: relative;left: 1330px;top: -1608px;width: 100px">
+                <div class="input-group spinner">
+                    <input type="text" class="form-control" id="number" value="0">
+                    <div class="input-group-btn-vertical">
+                        <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i>
+                        </button>
+                        <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

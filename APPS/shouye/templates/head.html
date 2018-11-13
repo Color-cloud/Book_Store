@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/npm.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid" style="background-color: lightgray">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://127.0.0.1:8000/"><span class="glyphicon glyphicon-book">&nbsp;</span><span style="color: black">书籍电商网站</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-left: 360px">
+            <form class="navbar-form navbar-left" action="http://127.0.0.1:8000/search/search" method="post">
+                <div class="form-group">
+                    <input type="text" name="book_search" class="form-control" placeholder="Search" style="width: 750px; height: 40px">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            {% if request.user.is_authenticated %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">{{ user.username }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="glyphicon glyphicon-comment">&nbsp;</span>留言板</a></li>
+                            <li><a href="{% url 'show_car' %}"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>我的购物车<span class="badge"><span id="car_count">{{ count }}</span></span></a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-comment">&nbsp;</span>我的订单</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="http://127.0.0.1:8000/account/zhuxiao"><span class="glyphicon glyphicon-off">&nbsp;</span>注销</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">统计页面</a></li>
+                    <li><a href="#">文章展示</a></li>
+                </ul>
+            {% else %}
+                <ul class="btn-group" role="group" aria-label="..." style="list-style: none ;margin-top: 10px ; margin-left: 360px">
+                    <li class="dropdown">
+                        <button type="button" class="btn btn-default" ><a
+                                href="http://127.0.0.1:8000/account/denglu">登录</a></button>
+                        <button type="button" class="btn btn-default" style="outline: none;margin-left: 5px">
+                    <a class="dropdown" href="http://127.0.0.1:8000/account/zhuce">立即注册</a></button></li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+</body>
+</html>

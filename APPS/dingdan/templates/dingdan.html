@@ -404,14 +404,11 @@
 
 
     <script src="/static/js/base.min.js"></script>
-
     <script type="text/javascript" src="/static/js/address_all.js"></script>
     <script type="text/javascript" src="/static/js/checkout.min.js"></script>
 </div>
 
 <!--收货地址body部分结束-->
-
-
 <!-- 底部 -->
 <div class="promise_box">
     <div class="w">
@@ -491,24 +488,24 @@
                 </pre>
     </div>
     <p>
-        <a href="#"><img src="images/bottom_img01.png"></a>
-        <a href="#"><img src="images/bottom_img02.png"></a>
-        <a href="#"><img src="images/bottom_img03.png"></a>
-        <a href="#"><img src="images/bottom_img04.png"></a>
-        <a href="#"><img src="images/bottom_img05.png"></a>
-        <a href="#"><img src="images/bottom_img06.png"></a>
-        <a href="#"><img src="images/bottom_img07.png"></a>
-        <a href="#"><img src="images/bottom_img08.png"></a>
-        <a href="#"><img src="images/bottom_img09.png"></a>
+        <a href="#"><img src="/static/images/bottom_img01.png"></a>
+        <a href="#"><img src="/static/images/bottom_img02.png"></a>
+        <a href="#"><img src="/static/images/bottom_img03.png"></a>
+        <a href="#"><img src="/static/images/bottom_img04.png"></a>
+        <a href="#"><img src="/static/images/bottom_img05.png"></a>
+        <a href="#"><img src="/static/images/bottom_img06.png"></a>
+        <a href="#"><img src="/static/images/bottom_img07.png"></a>
+        <a href="#"><img src="/static/images/bottom_img08.png"></a>
+        <a href="#"><img src="/static/images/bottom_img09.png"></a>
     </p>
 </div>
 <!-- 底部 -->
 <div class="fixed-buttons">
     <ul>
-        <li><a href="#" class="fixed-weixin"><img src="images/fixed_weixin.png"/>
-            <div class="weixin-pic"><img src="images/weixin_big.jpg"></div>
+        <li><a href="#" class="fixed-weixin"><img src="/static/images/fixed_weixin.png"/>
+            <div class="weixin-pic"><img src="/static/images/weixin_big.jpg"></div>
         </a></li>
-        <li><img id="imgBtn-to-top" src="images/back_top.png"/></li>
+        <li><img id="imgBtn-to-top" src="/static/images/back_top.png"/></li>
     </ul>
 </div>
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
@@ -519,7 +516,6 @@
         let data = {'money':$('#to_pay').attr('class')};
         let payurl =  '{% url "pay" %}';
         $.post( payurl , data , function (result) {
-              console.log("to pay enter.");
         })
     })
 </script>

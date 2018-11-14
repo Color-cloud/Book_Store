@@ -122,13 +122,15 @@
             $(".mark").each(function () {
                 book_ids = book_ids + $(this).attr('for') + ',';
             });
-            let data = {'1book_ids': book_ids,"zong_e": $('#zong_e').text()};
+            let data = {'1book_ids': book_ids, "zong_e": $('#zong_e').text()};
             let jiesuan_url = '{% url 'dingdan' %}';
             $.post(jiesuan_url, data, function (result) {
                 let rdata = result.shop_list;
                 let money_total = result.money_total;
+                let danjia = result.danjia;
+                let shuliang = result.shuliang;
                 if (result.status === 200) {
-                    window.location.href = "{% url 'dingdan' %}" + "/?rdata=" + rdata +"&zong_e=" + money_total
+                    window.location.href = "{% url 'dingdan' %}" + "/?rdata=" + rdata + "&zong_e=" + money_total  + "&danjia=" + danjia  + "&shuliang=" + shuliang
 
                 }
             })

@@ -33,7 +33,7 @@ def pay(request):
             out_trade_no=dingdan_num,
             total_amount=money,
             # 支付成功后跳转到前端  get
-            return_url='https://www.baidu.com',
+            return_url='http://127.0.0.1:8000/',
             # 后台接受支付宝支付相关的信息的接口  post
             # notify_url=
         )
